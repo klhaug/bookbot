@@ -1,5 +1,7 @@
 from stats import count_words
 from stats import count_characters
+from stats import sort_list
+
 
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -8,9 +10,17 @@ def get_book_text(filepath):
 
 def main(): 
     files = get_book_text('./books/frankenstein.txt')
-    count_words(files)
     char_count = count_characters(files)
-    print(char_count)
+    sorted_list = sort_list(char_count)
+    print("============ BOOKBOT ============")
+    print("Analyzing book found at books/frankenstein.txt...")
+    print("----------- Word Count ----------")
+    count_words(files)
+    print("-----------  Character Count ----------")
 
+    for entry in sorted_list:
+        print(f"{entry['char']}: {entry['num']}")
+
+    print("============ END ============")
 main()
 
